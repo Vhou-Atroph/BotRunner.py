@@ -1,10 +1,12 @@
+import sys
+
 from tkinter import *
 from tkinter import filedialog
-import os
+
 from subprocess import Popen
 
 #Info
-version='ALPHA1'
+version='ALPHA2'
 '''CONTRIBUTORS:
 -Vhou-Atroph'''
 
@@ -46,8 +48,14 @@ runbotbtn=Button(run,text="Run Bot")
 
 #Run Bot - Function
 def runbot():
-  Popen(["python",botfile0])
-  
+  global botRunning
+  botRunning=Popen(["python",botfile0])
+  runbotbtn.configure(command=stopbot,text="Stop Bot")
+def stopbot():
+  botRunning.kill()
+  print("Bot stopped.")
+  runbotbtn.configure(command=runbot,text="Run Bot")
+
 runbotbtn.configure(command=runbot)
 
 #Run Bot - Display
