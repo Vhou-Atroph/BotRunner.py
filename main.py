@@ -1,5 +1,7 @@
 from tkinter import *
 from tkinter import filedialog
+import os
+from subprocess import Popen
 
 #Info
 version='ALPHA1'
@@ -44,8 +46,8 @@ runbotbtn=Button(run,text="Run Bot")
 
 #Run Bot - Function
 def runbot():
-  print("This will work some day I swear")
-
+  Popen(["python",botfile0])
+  
 runbotbtn.configure(command=runbot)
 
 #Run Bot - Display
