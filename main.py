@@ -4,15 +4,18 @@ from tkinter import filedialog
 from subprocess import Popen
 
 #Info
-version='ALPHA3'
-'''CONTRIBUTORS:
--Vhou-Atroph'''
+'''
+VERSION: 1.0.0
+
+CONTRIBUTORS:
+-Vhou-Atroph
+'''
 
 #Window
 global window
 window=Tk()
 window.title("Discord.py Bot Panel")
-window.geometry('150x100')
+window.geometry('175x100')
 window.resizable(0,0)
 
 #File Selection - Basics
@@ -27,7 +30,6 @@ def findFile():
   title="Select a File",
   filetypes=(("Python files","*.py*"),
   ("All files","*.*")))
-
   pyfilelbl.configure(text="File: "+botfile)
 
 pyfilebtn.configure(command=findFile)
