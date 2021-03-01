@@ -1,12 +1,10 @@
 import sys
-
 from tkinter import *
 from tkinter import filedialog
-
 from subprocess import Popen
 
 #Info
-version='ALPHA2'
+version='ALPHA3'
 '''CONTRIBUTORS:
 -Vhou-Atroph'''
 
@@ -14,27 +12,23 @@ version='ALPHA2'
 global window
 window=Tk()
 window.title("Discord.py Bot Panel")
-
-#Bot Stuff
-global botfile
-global bottoken
-botfile=str()
-bottoken=str()
+window.geometry('150x100')
+window.resizable(0,0)
 
 #File Selection - Basics
 fileselect=Frame(window)
 pyfilebtn=Button(fileselect,text="Select File")
-pyfilelbl=Label(fileselect,text="File: "+botfile)
+pyfilelbl=Label(fileselect,text="File: ")
 
 #File Selection - Function
 def findFile():
-  global botfile0
-  botfile0=filedialog.askopenfilename(initialdir="/",
+  global botfile
+  botfile=filedialog.askopenfilename(initialdir="/",
   title="Select a File",
-  filetypes=((".py files","*.py*"),
+  filetypes=(("Python files","*.py*"),
   ("All files","*.*")))
 
-  pyfilelbl.configure(text="File: "+botfile0)
+  pyfilelbl.configure(text="File: "+botfile)
 
 pyfilebtn.configure(command=findFile)
 
@@ -49,20 +43,20 @@ runbotbtn=Button(run,text="Run Bot")
 #Run Bot - Function
 def runbot():
   global botRunning
-  botRunning=Popen(["python",botfile0])
-  runbotbtn.configure(command=stopbot,text="Stop Bot")
+  botRunning=Popen(["python",botfile])
+  runbotbtn.configure(command=stopbot,text="Stop Bot",fg='red')
 def stopbot():
   botRunning.kill()
   print("Bot stopped.")
-  runbotbtn.configure(command=runbot,text="Run Bot")
+  runbotbtn.configure(command=runbot,text="Run Bot",fg='green')
 
-runbotbtn.configure(command=runbot)
+runbotbtn.configure(command=runbot,fg='green')
 
 #Run Bot - Display
 runbotbtn.pack()
 
 #Frames - Display
-fileselect.pack(side=TOP)
-run.pack(side=BOTTOM,pady=2)
+fileselect.pack(pady=2)
+run.pack(pady=2)
 
 window.mainloop()
